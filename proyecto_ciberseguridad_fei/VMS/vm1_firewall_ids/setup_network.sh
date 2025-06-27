@@ -11,11 +11,16 @@ fi
 
 set -e
 
+# Habilitar logging de errores
+LOGFILE="/var/log/setup_network_error.log"
+exec 2> >(tee -a "$LOGFILE" >&2)
+trap 'log_message "ERROR" "Ocurrió un error en la línea $LINENO. Revisa $LOGFILE para detalles."' ERR
+
 # --- Variables de red (ajusta según tu entorno VMware) ---
-IFACE_PERIMETRAL="ens33"    # Internet/Perimetral
-IFACE_DMZ="ens36"           # DMZ
-IFACE_INTERNA="ens37"       # Red Interna
-IFACE_MONITOREO="ens38"     # Red de Monitoreo
+IFACE_PERIMETRAL="ens36"    # Internet/Perimetral
+IFACE_DMZ="ens37"           # DMZ
+IFACE_INTERNA="ens38"       # Red Interna
+IFACE_MONITOREO="ens39"     # Red de Monitoreo
 
 NET_PERIMETRAL="192.168.1.0/24"
 NET_DMZ="192.168.10.0/24"
@@ -56,8 +61,13 @@ configure_network_interfaces() {
 
 source /etc/network/interfaces.d/*
 
+#The loopback network interface
 auto lo
 iface lo inet loopback
+
+# Interfaz de acceso a Internet (NAT/Bridged)
+auto ens33
+iface ens33 inet dhcp
 
 auto $IFACE_PERIMETRAL
 iface $IFACE_PERIMETRAL inet static
