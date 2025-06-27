@@ -1,0 +1,36 @@
+# suricata.yaml básico para modo IPS en Debian 12
+# Para detalles, consulta la documentación oficial de Suricata
+
+default-log-dir: /var/log/suricata
+
+vars:
+  address-groups:
+    HOME_NET: "[192.168.0.0/16]"
+    EXTERNAL_NET: "!$HOME_NET"
+
+af-packet:
+  - interface: ens33
+    threads: auto
+    cluster-id: 99
+    cluster-type: cluster_flow
+    defrag: yes
+    copy-mode: ips
+    use-mmap: yes
+
+outputs:
+  - fast:
+      enabled: yes
+      filename: fast.log
+  - eve-log:
+      enabled: yes
+      filetype: regular
+      filename: eve.json
+      types:
+        - alert
+        - http
+        - dns
+        - tls
+        - flow
+        - ssh
+
+# Incluye tus reglas personalizadas en /etc/suricata/rules/local.rules
