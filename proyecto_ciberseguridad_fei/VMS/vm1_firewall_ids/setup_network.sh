@@ -66,7 +66,7 @@ auto lo
 iface lo inet loopback
 
 # Interfaz de acceso a Internet (NAT/Bridged)
-auto ens33
+allow-hotplug ens33
 iface ens33 inet dhcp
 
 auto $IFACE_PERIMETRAL
