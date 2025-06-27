@@ -73,8 +73,6 @@ auto $IFACE_PERIMETRAL
 iface $IFACE_PERIMETRAL inet static
     address $IP_PERIMETRAL
     netmask 255.255.255.0
-    gateway 192.168.1.254
-    dns-nameservers 8.8.8.8 8.8.4.4
 
 auto $IFACE_DMZ
 iface $IFACE_DMZ inet static
