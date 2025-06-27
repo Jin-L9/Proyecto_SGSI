@@ -81,6 +81,8 @@ iface $IFACE_MONITOREO inet static
     address $IP_MONITOREO
     netmask 255.255.255.0
 EOF
+    # Guardar también en configs/network_interfaces.conf para referencia
+    cat /etc/network/interfaces > "$(dirname "$0")/configs/network_interfaces.conf"
     systemctl restart networking
     log_message "SUCCESS" "Interfaces de red configuradas."
 }
