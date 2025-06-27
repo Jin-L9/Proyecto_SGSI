@@ -11,6 +11,7 @@ SCRIPTS=(
   "utils/restore_config.sh"
   "utils/test_firewall.sh"
   "utils/monitor_logs.sh"
+  "instalacion_automatica.sh"
 )
 
 for script in "${SCRIPTS[@]}"; do

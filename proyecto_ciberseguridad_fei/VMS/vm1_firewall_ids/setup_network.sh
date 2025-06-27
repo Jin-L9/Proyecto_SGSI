@@ -13,9 +13,9 @@ set -e
 
 # --- Variables de red (ajusta según tu entorno VMware) ---
 IFACE_PERIMETRAL="ens33"    # Internet/Perimetral
-IFACE_DMZ="ens34"           # DMZ
-IFACE_INTERNA="ens35"       # Red Interna
-IFACE_MONITOREO="ens36"     # Red de Monitoreo
+IFACE_DMZ="ens36"           # DMZ
+IFACE_INTERNA="ens37"       # Red Interna
+IFACE_MONITOREO="ens38"     # Red de Monitoreo
 
 NET_PERIMETRAL="192.168.1.0/24"
 NET_DMZ="192.168.10.0/24"
